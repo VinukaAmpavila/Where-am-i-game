@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://dck0jfe0v11i4"]
+
+[ext_resource type="Script" path="res://Scenes/PauseMenu/lose_menu.gd" id="1_7kx2s"]
+[ext_resource type="AudioStream" uid="uid://b3wqvd5yae3hr" path="res://Assets/Sounds/GameOver.wav" id="2_0kg2o"]
+[ext_resource type="AudioStream" uid="uid://jm50qkdj0k1r" path="res://Assets/Sounds/Menu2.wav" id="3_r1tat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urbo1"]
+bg_color = Color(0.000444795, 0.000832161, 0.000409956, 0.552941)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lag8y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kae8"]
+bg_color = Color(0.501639, 0.432238, 0.155812, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13qgm"]
+bg_color = Color(0.689454, 0.597943, 0.168125, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pi64g"]
+bg_color = Color(0.48158, 0.413872, 0.106565, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxuyd"]
+bg_color = Color(0.690196, 0.596078, 0.168627, 1)
+
+[node name="LoseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7kx2s")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -160.0
+offset_right = 153.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_urbo1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 63
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831373, 0.0352941, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "You Died"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.439216, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lag8y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3kae8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_13qgm")
+text = "Restart"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.352941, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pi64g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cxuyd")
+text = "Main Menu
+"
+
+[node name="Endsong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0kg2o")
+volume_db = 0.806
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_r1tat")
+volume_db = -4.837
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

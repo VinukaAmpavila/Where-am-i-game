@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://sv6g6o53ch2r"]
+
+[ext_resource type="Script" path="res://Scenes/ChatUI/npc_message.gd" id="1_fs5nn"]
+
+[sub_resource type="Theme" id="Theme_072xd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my2lm"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(3.08518e-05, 0.589976, 0.129226, 1)
+border_color = Color(0.000693897, 0.000693898, 0.000693897, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="NpcMessage" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_072xd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_my2lm")
+script = ExtResource("1_fs5nn")
+
+[node name="MessageContent" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+autowrap_mode = 2

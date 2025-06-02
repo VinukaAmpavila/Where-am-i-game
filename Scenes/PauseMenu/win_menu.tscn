@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7iypnbbmhlu2"]
+
+[ext_resource type="Script" path="res://Scenes/PauseMenu/win_menu.gd" id="1_05o24"]
+[ext_resource type="AudioStream" uid="uid://jm50qkdj0k1r" path="res://Assets/Sounds/Menu2.wav" id="2_qh00u"]
+[ext_resource type="AudioStream" uid="uid://mjd31ftcsamg" path="res://Assets/Sounds/Music/25 - End Theme 2.ogg" id="3_ljq7n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl6nd"]
+bg_color = Color(0.224907, 0.229025, 0.0754397, 0.827451)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiwy4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ta0av"]
+bg_color = Color(0.501639, 0.432238, 0.155812, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvfh0"]
+bg_color = Color(0.689454, 0.597943, 0.168125, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ii6o"]
+bg_color = Color(0.48158, 0.413872, 0.106565, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r21dw"]
+bg_color = Color(0.690196, 0.596078, 0.168627, 1)
+
+[node name="WinMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05o24")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -160.0
+offset_right = 153.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pl6nd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 63
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.137255, 0.654902, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "You closed the portal
+and saved everyone"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiwy4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ta0av")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvfh0")
+text = "Replay"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2ii6o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r21dw")
+text = "Main Menu
+"
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qh00u")
+volume_db = -4.837
+
+[node name="endsong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ljq7n")
+volume_db = -1.455
+parameters/looping = true
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

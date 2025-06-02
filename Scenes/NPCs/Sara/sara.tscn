@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://beg0uw8qegnn1"]
+
+[ext_resource type="Texture2D" uid="uid://d4h42skdojh6q" path="res://Assets/NPC/Characters/Princess/SpriteSheet.png" id="1_cnefj"]
+[ext_resource type="Script" path="res://Scenes/NPCs/Sara/area_2d.gd" id="2_rdiis"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glcig"]
+atlas = ExtResource("1_cnefj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dd8dj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glcig")
+}],
+"loop": true,
+"name": &"Sara",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jpihu"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ix3ix"]
+radius = 32.0
+
+[node name="Sara" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dd8dj")
+animation = &"Sara"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jpihu")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_rdiis")
+
+[node name="Interact" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ix3ix")

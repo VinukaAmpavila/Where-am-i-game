@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://obs8qkbki3nm"]
+
+[ext_resource type="Script" path="res://Scenes/DArrow/d_arrow.gd" id="1_myi3p"]
+[ext_resource type="Texture2D" uid="uid://rumugufklbl5" path="res://sprites/arrow/arrow.png" id="1_w18gp"]
+[ext_resource type="AudioStream" uid="uid://c7ju1l5nl4jcq" path="res://Assets/Sounds/Fireball.wav" id="3_85okk"]
+
+[node name="DArrow" type="Node2D"]
+script = ExtResource("1_myi3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 0)
+texture = ExtResource("1_w18gp")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(15, 0)
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="firebsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_85okk")
+volume_db = -17.736

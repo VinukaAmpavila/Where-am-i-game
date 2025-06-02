@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtivlvx0br2xf"]
+
+[ext_resource type="Texture2D" uid="uid://6kb5lwhmkb8t" path="res://Assets/NPC/Characters/Villager/SpriteSheet.png" id="1_jduh1"]
+[ext_resource type="Script" path="res://Scenes/NPCs/Harry/harry.gd" id="2_s2ahs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k73pf"]
+atlas = ExtResource("1_jduh1")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1qlw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k73pf")
+}],
+"loop": true,
+"name": &"Sara",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_isiof"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ypmmf"]
+radius = 32.0
+
+[node name="Harry" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o1qlw")
+animation = &"Sara"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_isiof")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_s2ahs")
+
+[node name="Interact" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ypmmf")

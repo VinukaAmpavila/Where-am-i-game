@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://s0xis3nxsfhq"]
+
+[ext_resource type="Texture2D" uid="uid://lboqhohjmuqo" path="res://Assets/NPC/Characters/Vampire/SpriteSheet.png" id="1_pojey"]
+[ext_resource type="Script" path="res://Scenes/NPCs/Alex/alex.gd" id="2_7tqfk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pg7m"]
+atlas = ExtResource("1_pojey")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eo2m0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pg7m")
+}],
+"loop": true,
+"name": &"Sara",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8xhw"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xjcgc"]
+radius = 32.0
+
+[node name="Alex" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eo2m0")
+animation = &"Sara"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_l8xhw")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_7tqfk")
+
+[node name="Interact" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xjcgc")

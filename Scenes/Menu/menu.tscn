@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://vwqp1kyqhrf5"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_qlabu"]
+[ext_resource type="Texture2D" uid="uid://bi3gd4syqlmtn" path="res://Assets/Menu/background.png" id="2_g05qy"]
+[ext_resource type="Texture2D" uid="uid://d0o8er0ovsb6r" path="res://Assets/Menu/Logo.png" id="3_vqjvb"]
+[ext_resource type="FontFile" uid="uid://dl5nblpk2do5g" path="res://Scenes/Menu/Chomsky.otf" id="4_h8rqy"]
+[ext_resource type="AudioStream" uid="uid://bojtdkucxb6rn" path="res://Assets/Sounds/Music/29 - Lament.ogg" id="5_b86ml"]
+[ext_resource type="AudioStream" uid="uid://jm50qkdj0k1r" path="res://Assets/Sounds/Menu2.wav" id="6_kxuof"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i3nej"]
+texture = ExtResource("2_g05qy")
+modulate_color = Color(0.958136, 0.961107, 0.9611, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qxjcx"]
+texture = ExtResource("3_vqjvb")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_87yuq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33mei"]
+bg_color = Color(0.455842, 0.369063, 0.0245685, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.541176)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.49)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0lmr"]
+bg_color = Color(0.619886, 0.496832, 0.153641, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.541176)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.49)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7n6f"]
+bg_color = Color(0.787307, 0.717683, 0.171683, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.541176)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.49)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qlabu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i3nej")
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 4.0
+offset_right = 845.0
+offset_bottom = 257.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_qxjcx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.5
+offset_top = -65.0
+offset_right = 208.5
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_h8rqy")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_87yuq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_33mei")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x0lmr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_f7n6f")
+text = "Start Game"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_h8rqy")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_87yuq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_33mei")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x0lmr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_f7n6f")
+text = "Exit"
+
+[node name="MenuSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b86ml")
+volume_db = -4.837
+parameters/looping = true
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kxuof")
+volume_db = -1.612
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
